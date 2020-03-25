@@ -1,16 +1,14 @@
 package com.example.lab2android;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class AddToCollection extends AppCompatActivity {
 
@@ -20,6 +18,8 @@ public class AddToCollection extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_to_collection);
+
+        checkBackgroundColor();  // LAB 5
 
 //        Intent intent = getIntent();
 //        Bundle bundle = intent.getExtras();
@@ -42,5 +42,28 @@ public class AddToCollection extends AppCompatActivity {
                 builder.show();
             }
         });
+    }
+
+    // LAB 5
+    private void checkBackgroundColor(){
+        ConstraintLayout constraintLayout = findViewById(R.id.layoutAddToCollection);
+        SharedPreferences settingsSharedPref = this.getSharedPreferences("bgColor", MODE_PRIVATE);
+        String background = settingsSharedPref.getString("bgColor","");
+        if(!background.equals("")){
+            switch (background) {
+                case "Gray":
+                    constraintLayout.setBackgroundColor(getResources().getColor(R.color.colorGray));
+                    break;
+                case "Blue":
+                    constraintLayout.setBackgroundColor(getResources().getColor(R.color.colorLightBlue));
+                    break;
+                case "Green":
+                    constraintLayout.setBackgroundColor(getResources().getColor(R.color.colorLightGreen));
+                    break;
+                case "Pink":
+                    constraintLayout.setBackgroundColor(getResources().getColor(R.color.colorLightPink));
+                    break;
+            }
+        }
     }
 }

@@ -4,4 +4,6 @@
         android:title="About" />
     <item android:id="@+id/menuHelp"
         android:title="Help" />
+    <item android:id="@+id/menuSettings"
+        android:title="Settings" />
 </menu>

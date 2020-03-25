@@ -1,9 +1,8 @@
 package com.example.lab2android;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -17,6 +16,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -27,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // LAB 5
+        loadBackgroundColor();
 
         /* LAB 1 */
 
@@ -100,12 +110,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+        final TextView bookDescription = (TextView) findViewById(R.id.bookDescription);
+        bookDescription.setText(loadContent()); // LAB 5 - load book description saved in configurare.txt
         super.onStart();
         Log.d("lifecycle","onStart invoked");
     }
 
     @Override
     protected void onResume() {
+        loadBackgroundColor(); // LAB 5
         super.onResume();
         Log.d("lifecycle","onResume invoked");
     }
@@ -118,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
+        saveContent(R.id.bookDescription); // LAB 5 save book description to configuration.txt
         super.onStop();
         Log.d("lifecycle","onStop invoked");
     }
@@ -164,6 +178,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
+        if(menuItem.getItemId() == R.id.menuSettings) {
+            // LAB 5
+            Intent intent = new Intent(MainActivity.this, Settings.class);
+            startActivity(intent);
+        }
         // respond to menu item selection
         String menuMsg = "";
         if(menuItem.getItemId() == R.id.menuAbout) {
@@ -179,4 +198,68 @@ public class MainActivity extends AppCompatActivity {
 
     /* Create another Activity (or more) and connect them using Intent Filters. ( i.e. intents for sending a SMS, starting a voice call, open an URL, etc.) (2p) */
     /* Created AddToCollection activity */
+
+    /* LAB 5
+    *  Create a PreferenceActivity for your application and store the settings using SharedPreferences (4p)
+    *  Add support for saving App Information on disk (InternalStorage/ExternalStorage/Database) (4p)
+     * */
+
+    private void loadBackgroundColor(){
+        ConstraintLayout constraintLayout = findViewById(R.id.mainLayout);
+        SharedPreferences settingsSharedPref = this.getSharedPreferences("bgColor", MODE_PRIVATE);
+        String background = settingsSharedPref.getString("bgColor","");
+        if(!background.equals("")){
+            switch (background) {
+                case "Gray":
+                    constraintLayout.setBackgroundColor(getResources().getColor(R.color.colorGray));
+                    break;
+                case "Blue":
+                    constraintLayout.setBackgroundColor(getResources().getColor(R.color.colorLightBlue));
+                    break;
+                case "Green":
+                    constraintLayout.setBackgroundColor(getResources().getColor(R.color.colorLightGreen));
+                    break;
+                case "Pink":
+                    constraintLayout.setBackgroundColor(getResources().getColor(R.color.colorLightPink));
+                    break;
+            }
+        }
+    }
+
+
+    // Add support for saving App Information on disk (InternalStorage/ExternalStorage/Database) (4p)
+    private void saveContent(int id) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(this.openFileOutput("configurare.txt", MODE_PRIVATE));
+            String text = ((TextView) findViewById(id)).getText().toString();
+            outputStreamWriter.write(text);
+            outputStreamWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String loadContent(){
+        String toReturn = "";
+        try {
+            InputStream inputStream = this.openFileInput("configurare.txt");
+            if (inputStream != null) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                StringBuilder fullString = new StringBuilder();
+
+                String currentLine = bufferedReader.readLine();
+                while (currentLine != null) {
+                    fullString.append(currentLine);
+                    currentLine = bufferedReader.readLine();
+                }
+                inputStream.close();
+                toReturn = fullString.toString();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return toReturn;
+    }
+
 }
