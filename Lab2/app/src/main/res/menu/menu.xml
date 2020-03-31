@@ -4,6 +4,10 @@
         android:title="About" />
     <item android:id="@+id/menuHelp"
         android:title="Help" />
+    <item android:id="@+id/menuSensorsInfo"
+        android:title="Sensors Information" />
+    <item android:id="@+id/menuLocation"
+        android:title="Location" />
     <item android:id="@+id/menuSettings"
         android:title="Settings" />
 </menu>

@@ -1,0 +1,157 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30sp"
+    android:id="@+id/layoutSensorsInfo">
+
+    <!--ACCELEROMETER LAYOUT-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/layoutAcc">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Accelerometer (rad/s) "
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/xAccValue"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/yAccValue"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/zAccValue"
+            android:textColor="@android:color/black"/>
+    </LinearLayout>
+
+    <!--GYROSCOPE LAYOUT-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/layoutGyroscope"
+        android:layout_below="@+id/layoutAcc"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Gyroscope (rad/s) "
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/xGyroscopeValue"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/yGyroscopeValue"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/zGyroscopeValue"
+            android:textColor="@android:color/black"/>
+    </LinearLayout>
+
+    <!--MAGNETIC FIELD LAYOUT-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/layoutMagnometer"
+        android:layout_below="@+id/layoutGyroscope"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Magnetic Field (uT) "
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/xMagnometereValue"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/yMagnometereValue"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/zMagnometereValue"
+            android:textColor="@android:color/black"/>
+    </LinearLayout>
+
+    <!-- LAYOUT for Light, Pressure, Temperature, Humidity, Proximity-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="15sp"
+        android:id="@+id/layoutOthers"
+        android:layout_below="@+id/layoutMagnometer">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/lightValue"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/pressureValue"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/tempValue"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/humidValue"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/proximityValue"
+            android:textColor="@android:color/black"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

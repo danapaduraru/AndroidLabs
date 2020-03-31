@@ -183,6 +183,16 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, Settings.class);
             startActivity(intent);
         }
+        else if(menuItem.getItemId() == R.id.menuSensorsInfo) {
+            // LAB 6
+            Intent intent = new Intent(MainActivity.this, SensorsInfo.class);
+            startActivity(intent);
+        }
+        else if(menuItem.getItemId() == R.id.menuLocation) {
+            // LAB 6
+            Intent intent = new Intent(MainActivity.this, Location.class);
+            startActivity(intent);
+        }
         // respond to menu item selection
         String menuMsg = "";
         if(menuItem.getItemId() == R.id.menuAbout) {
@@ -261,5 +271,14 @@ public class MainActivity extends AppCompatActivity {
         }
         return toReturn;
     }
+
+    // LAB 6
+     /*
+        Create a new Activity in your application and display information from the sensors available on the device.(3 p)
+        Add support for location services. Calculate and display coordinates using GPS. (3 p)
+    */
+
+     // => Created Activities Location and SensorsInfo
+
 
 }
