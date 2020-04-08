@@ -8,6 +8,8 @@
         android:title="Sensors Information" />
     <item android:id="@+id/menuLocation"
         android:title="Location" />
+    <item android:id="@+id/menuTakePhoto"
+        android:title="Take Photo" />
     <item android:id="@+id/menuSettings"
         android:title="Settings" />
 </menu>

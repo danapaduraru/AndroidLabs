@@ -193,6 +193,11 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, Location.class);
             startActivity(intent);
         }
+        else if(menuItem.getItemId() == R.id.menuTakePhoto) {
+            // LAB 6
+            Intent intent = new Intent(MainActivity.this, TakePhoto.class);
+            startActivity(intent);
+        }
         // respond to menu item selection
         String menuMsg = "";
         if(menuItem.getItemId() == R.id.menuAbout) {
@@ -279,6 +284,12 @@ public class MainActivity extends AppCompatActivity {
     */
 
      // => Created Activities Location and SensorsInfo
+
+    // LAB 7
+
+    //  Create a new activity and access the camera. Taking photos and saving them must be supported.(8p)
+
+    // => Created Activity TakePhoto
 
 
 }
